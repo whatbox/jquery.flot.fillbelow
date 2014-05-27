@@ -1,0 +1,19 @@
+{
+	"name": "jquery.flot.fillbelow",
+	"version": "0.1.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/whatbox/jquery.flot.fillbelow.git"
+	},
+	"main": "jquery.flot.byte.js",
+	"scripts": {
+		"test": "./node_modules/.bin/jshint *.js"
+	},
+	"dependencies": {
+		"jquery": "*",
+		"flot": "*"
+	},
+	"devDependencies": {
+		"jshint": "*"
+	}
+}
