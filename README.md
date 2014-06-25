@@ -1,4 +1,4 @@
-# Fill bellow plugin for jQuery Flot
+# Fill below plugin for jQuery Flot
 [![Build Status](https://travis-ci.org/whatbox/jquery.flot.fillbelow.png?branch=master)](https://travis-ci.org/whatbox/jquery.flot.fillbelow)
 
 ## About

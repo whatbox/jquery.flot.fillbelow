@@ -152,12 +152,12 @@
                             intersect = intersectionPoint(i);
                             openPolygon(intersect[0], intersect[1]);
                         }
-    
+
                         topTraversal(i, end_i);
                         return;
                     }
 
-                    // If we go bellow equal, equal at any preceeding point is irrelevant
+                    // If we go below equal, equal at any preceeding point is irrelevant
                     else {
                         start = false;
                         equal = false;
