@@ -282,7 +282,7 @@
         init: init,
         options: options,
         name: "fillbelow",
-        version: "1.0"
+        version: "0.1.0"
     });
 
 })(jQuery);
