@@ -252,8 +252,6 @@
         return;
       }
 
-      debugger;
-
       // Flot's getFillStyle() should probably be exposed somewhere
       if (series.fillBelowUseSeriesObjectFillColor) {
         fillStyle = $.color.parse(series.lines.fillColor);
