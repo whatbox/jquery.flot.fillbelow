@@ -18,7 +18,7 @@ The usage should be familiar to anyone who has used jquery.flot.fillbetween.js b
 
 	var dataset = [
 		{ data: [ ... ], id: "foo" },
-		{ data: [ ... ], fillBelowTo: "foo", fillColor: "FF0000" },
+		{ data: [ ... ], fillBelowTo: "foo" }
 	];
 
 	$.plot($("#placeholder"), dataset, { line: { show: true }});
@@ -26,8 +26,8 @@ The usage should be familiar to anyone who has used jquery.flot.fillbetween.js b
 Similarly, you can set fillbelow on two data sets against each other
 
 	var dataset = [
-		{ data: [ ... ], id: "revenue", fillBelowTo: "expenses", fillColor: "#00FF00" },
-		{ data: [ ... ], id: "expenses", fillBelowTo: "revenue", fillColor: "#FF0000" },
+		{ data: [ ... ], id: "revenue", fillBelowTo: "expenses" },
+		{ data: [ ... ], id: "expenses", fillBelowTo: "revenue" }
 	];
 
 	$.plot($("#placeholder"), dataset, { line: { show: true }});
