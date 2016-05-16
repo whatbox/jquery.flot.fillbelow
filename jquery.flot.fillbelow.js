@@ -3,8 +3,7 @@
 
     var options = {
         series: {
-            fillBelowTo: null,
-            fillColor: null
+            fillBelowTo: null
         }
     };
 
@@ -264,14 +263,16 @@
                 return;
             }
 
-
+			debugger;
+			
             // Flot's getFillStyle() should probably be exposed somewhere
-			if (series.fillColor === null) {
-				fillStyle = $.color.parse(series.color);
-			} else {
-				fillStyle = $.color.parse(series.fillColor);	
-			}
-            fillStyle.a = 0.4;
+	    if (series.lines && series.lines.fillColor) {
+		fillStyle = $.color.parse(series.lines.fillColor);
+	    } else {
+		fillStyle = $.color.parse(series.color);
+	    }
+	    
+	    fillStyle.a = 0.4;
             fillStyle.normalize();
             ctx.fillStyle = fillStyle.toString();
 
