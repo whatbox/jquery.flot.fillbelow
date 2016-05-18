@@ -387,6 +387,39 @@
 					mode: "time"
 				}
 			});
+
+			$.plot(document.getElementById('fillcolor1'), [
+				{
+					"label": "Good",
+					"data": good1Good,
+					"id": "good",
+					"fillBelowTo": "bad",
+					"color": "green",
+					"fillBelowUseSeriesObjectFillColor": false,
+					"fillColor": "blue"
+				},
+				{
+					"label": "Bad",
+					"id": "bad",
+					"fillBelowTo": "good",
+					"data": nullBad,
+					"color": "red",
+					"fillBelowUseSeriesObjectFillColor": false,
+					"fillColor": "yellow"
+				}
+			], {
+				series: {
+					lines: {
+						show: true
+					},
+					points: {
+						show: true
+					}
+				},
+				xaxis: {
+					mode: "time"
+				}
+			});
 		});
 		//]]>
 		</script>
@@ -400,6 +433,8 @@
 		<div id="good3" class="graph"></div>
 		<div id="sample2" class="graph"></div>
 		<div id="sample4" class="graph"></div>
+		<div id="fillcolor1" class="graph"></div>
+
 		<h3>Badly formed data</h3>
 		<div id="sample3" class="graph"></div>
 	</body>
