@@ -114,8 +114,8 @@
 
                 var start = (
                         start_i === 0 ||
-                        points[start_i - 1] === null ||
-                        otherpoints[start_i - 1] === null
+                        points[((start_i - 1) * ps) + 1] === null ||
+                        otherpoints[((start_i - 1) * otherps) + 1] === null
                     ),
                     equal = false,
                     i,
@@ -125,7 +125,7 @@
                     // Take note of null points
                     if (
                         points[(i * ps) + 1] === null ||
-                        otherpoints[(i * ps) + 1] === null
+                        otherpoints[(i * otherps) + 1] === null
                     ) {
                         equal = false;
                         start = true;
@@ -170,20 +170,19 @@
             function intersectionPoint(right_i) {
                 console.assert(right_i > 0, "expects the second point in the series line segment");
 
-                var i, intersect;
+                // Both series share x values (see validateInput), so the crossing must be
+                // between the same two indexes. Searching every segment of the other series
+                // can match bogus segments made from null points (null coerces to 0).
+                var intersect = segmentIntersection(
+                    points[(right_i - 1) * ps], points[((right_i - 1) * ps) + 1],
+                    points[right_i * ps], points[(right_i * ps) + 1],
 
-                for (i = 1; i < (otherpoints.length/otherps); i++) {
-                    intersect = segmentIntersection(
-                        points[(right_i - 1) * ps], points[((right_i - 1) * ps) + 1],
-                        points[right_i * ps], points[(right_i * ps) + 1],
+                    otherpoints[(right_i - 1) * otherps], otherpoints[((right_i - 1) * otherps) + 1],
+                    otherpoints[right_i * otherps], otherpoints[(right_i * otherps) + 1]
+                );
 
-                        otherpoints[(i - 1) * otherps], otherpoints[((i - 1) * otherps) + 1],
-                        otherpoints[i * otherps], otherpoints[(i * otherps) + 1]
-                    );
-
-                    if (intersect !== null) {
-                        return intersect;
-                    }
+                if (intersect !== null) {
+                    return intersect;
                 }
 
                 console.error("intersectionPoint() should only be called when an intersection happens");
@@ -211,7 +210,11 @@
                     intersect;
 
                 for (i = start_i; i < end_i; i++) {
-                    if (points[(i * ps) + 1] === null && i > start_i) {
+                    // A gap in either series ends the polygon
+                    if (
+                        (points[(i * ps) + 1] === null || otherpoints[(i * otherps) + 1] === null) &&
+                        i > start_i
+                    ) {
                         bottomTraversal(i - 1, start_i);
                         findNextStart(i, end_i);
                         return;
@@ -243,7 +246,8 @@
                     }
                 }
 
-                bottomTraversal(end_i, start_i);
+                // end_i is one past the last point
+                bottomTraversal(end_i - 1, start_i);
             }
 
 
